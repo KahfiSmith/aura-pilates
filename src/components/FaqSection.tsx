@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { studioData } from "@/data/pilates";
-import { ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
 
 export function FaqSection() {
   const { faqs, contact } = studioData;
@@ -13,54 +13,46 @@ export function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-[#FAF7F2] text-[#1A2821] border-b border-[#E5DDD0]">
+    <section id="faq" className="py-20 lg:py-32 bg-[#F8F8F7] text-[#121312] border-b border-[#DFDFD9]">
       <div className="max-w-4xl mx-auto px-5 lg:px-10">
-        <div className="text-center mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EAE3D5] text-[#1A2821] text-xs font-semibold tracking-wider uppercase border border-[#D3C8B6]">
-            Knowledge & Etiquette
+        <div className="space-y-4 mb-16">
+          <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase">
+            STUDIO GUIDE
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#1A2821] leading-tight">
-            PERTANYAAN SERING DIAJUKAN. <br />
-            <span className="italic font-normal text-[#C86D51]">PANDUAN KUNJUNGAN</span> PERTAMA KALI.
+          <h2 className="font-sans font-black text-4xl sm:text-6xl tracking-tight text-[#121312] uppercase leading-[0.95]">
+            FREQUENTLY <br />
+            ASKED.
           </h2>
-          <p className="text-base text-[#647069] leading-relaxed">
-            Semua hal yang perlu Anda ketahui sebelum melangkah ke studio reformer pertama kali.
+          <p className="text-sm sm:text-base text-[#5E605E] max-w-lg leading-relaxed">
+            Informasi penting seputar etiket studio, persiapan kelas perdana, dan standar keselamatan berlatih di AURA.
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="border-t border-[#121312] divide-y divide-[#DFDFD9]">
           {faqs.map((faq) => {
             const isOpen = openId === faq.id;
 
             return (
-              <div
-                key={faq.id}
-                className="rounded-3xl border border-[#E5DDD0] bg-[#FFFFFF] overflow-hidden transition-all duration-300 shadow-sm"
-              >
+              <div key={faq.id} className="py-6">
                 <button
                   type="button"
                   onClick={() => toggleAccordion(faq.id)}
-                  className="w-full p-6 sm:p-8 flex items-center justify-between gap-4 text-left hover:bg-[#F3EFE6]/40 transition-colors"
+                  className="w-full flex items-center justify-between gap-4 text-left hover:text-[#CE5A37] transition-colors cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <div className="flex items-center gap-3.5">
-                    <span className="w-8 h-8 rounded-full bg-[#EFF4F1] text-[#567568] flex items-center justify-center text-xs font-bold shrink-0">
-                      <HelpCircle className="w-4 h-4" />
-                    </span>
-                    <span className="font-serif text-base sm:text-lg font-bold text-[#1A2821]">
-                      {faq.question}
-                    </span>
-                  </div>
+                  <span className="font-sans font-black text-lg sm:text-xl text-[#121312] uppercase tracking-tight">
+                    {faq.question}
+                  </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-[#647069] shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180 text-[#C86D51]" : ""
+                    className={`w-5 h-5 text-[#5E605E] shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180 text-[#CE5A37]" : ""
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 text-sm text-[#647069] leading-relaxed border-t border-[#E5DDD0]/50 animate-in fade-in duration-200">
-                    <p className="pt-4">{faq.answer}</p>
+                  <div className="pt-4 text-xs sm:text-sm text-[#5E605E] leading-relaxed max-w-2xl animate-in fade-in duration-150">
+                    <p>{faq.answer}</p>
                   </div>
                 )}
               </div>
@@ -68,26 +60,21 @@ export function FaqSection() {
           })}
         </div>
 
-        <div className="mt-12 text-center p-8 rounded-3xl bg-[#F3EFE6] border border-[#E5DDD0] space-y-3">
-          <h3 className="font-serif text-lg font-bold text-[#1A2821]">
-            Punya Pertanyaan Spesifik Terkait Kondisi Medis Anda?
-          </h3>
-          <p className="text-xs sm:text-sm text-[#647069] max-w-md mx-auto leading-relaxed">
-            Konsultasikan keluhan atau riwayat kesehatan Anda secara privat langsung bersama tim instruktur kepala kami.
-          </p>
-          <div className="pt-2">
-            <a
-              href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
-                "Halo AURA Pilates Studio! Saya ingin berkonsultasi mengenai kondisi tubuh saya sebelum mulai berlatih."
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1A2821] text-[#FAF7F2] text-xs font-semibold tracking-wider uppercase hover:bg-[#C86D51] transition-colors"
-            >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>Tanya Langsung via WhatsApp</span>
-            </a>
-          </div>
+        <div className="mt-12 pt-8 border-t border-[#DFDFD9] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono">
+          <span className="text-[#5E605E] uppercase">
+            MEMILIKI KELUHAN MEDIS KHUSUS ATAU REKOMENDASI DOKTER?
+          </span>
+          <a
+            href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
+              "Halo AURA Movement Studio! Saya ingin berkonsultasi mengenai kondisi medis tubuh saya sebelum mulai latihan."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-bold uppercase text-[#121312] hover:text-[#CE5A37] transition-colors"
+          >
+            <span>KONSULTASI PRIVAT</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </section>

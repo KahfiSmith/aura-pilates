@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FAF7F2;
-  --foreground: #1A2821;
-  --surface: #F3EFE6;
+  --background: #F8F8F7;
+  --foreground: #121312;
+  --surface: #F0F0EE;
   --surface-card: #FFFFFF;
-  --surface-accent: #EAE3D5;
-  --border: #E5DDD0;
-  --border-bold: #D3C8B6;
-  --accent-olive: #1A2821;
-  --accent-olive-light: #2B3E34;
-  --accent-sage: #567568;
-  --accent-sage-light: #EFF4F1;
-  --accent-terracotta: #C86D51;
-  --accent-terracotta-hover: #B55B40;
-  --accent-terracotta-light: #FAEEEA;
-  --text-muted: #647069;
-  --text-light: #8E9A93;
+  --surface-accent: #E5E5E0;
+  --border: #DFDFD9;
+  --border-bold: #121312;
+  --accent-charcoal: #121312;
+  --accent-charcoal-light: #2A2C2A;
+  --accent-rust: #CE5A37;
+  --accent-rust-hover: #B54726;
+  --accent-rust-light: #FAF0ED;
+  --accent-forest: #243128;
+  --accent-forest-light: #EEF3F0;
+  --text-muted: #5E605E;
+  --text-light: #8A8D8A;
 }
 
 @theme inline {
@@ -27,13 +27,13 @@
   --color-surface-accent: var(--surface-accent);
   --color-border-subtle: var(--border);
   --color-border-bold: var(--border-bold);
-  --color-olive: var(--accent-olive);
-  --color-olive-light: var(--accent-olive-light);
-  --color-sage: var(--accent-sage);
-  --color-sage-light: var(--accent-sage-light);
-  --color-terracotta: var(--accent-terracotta);
-  --color-terracotta-hover: var(--accent-terracotta-hover);
-  --color-terracotta-light: var(--accent-terracotta-light);
+  --color-charcoal: var(--accent-charcoal);
+  --color-charcoal-light: var(--accent-charcoal-light);
+  --color-rust: var(--accent-rust);
+  --color-rust-hover: var(--accent-rust-hover);
+  --color-rust-light: var(--accent-rust-light);
+  --color-forest: var(--accent-forest);
+  --color-forest-light: var(--accent-forest-light);
   --color-text-muted: var(--text-muted);
   --color-text-light: var(--text-light);
 }
@@ -51,6 +51,6 @@ body {
 }
 
 ::selection {
-  background-color: #C86D51;
+  background-color: #121312;
   color: #FFFFFF;
 }

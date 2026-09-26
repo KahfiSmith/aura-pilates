@@ -3,150 +3,161 @@
 import { useState } from "react";
 import Image from "next/image";
 import { studioData } from "@/data/pilates";
-import { Check, Clock, Users, Flame, ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 export function ClassPrograms() {
   const { classes, contact } = studioData;
-  const [selectedId, setSelectedId] = useState(classes[0].id);
+  const [activeId, setActiveId] = useState(classes[0].id);
 
-  const activeClass = classes.find((c) => c.id === selectedId) || classes[0];
+  const selectedClass = classes.find((c) => c.id === activeId) || classes[0];
 
   return (
-    <section id="kelas" className="py-24 sm:py-32 bg-[#FAF7F2] text-[#1A2821] border-b border-[#E5DDD0]">
+    <section id="classes" className="py-20 lg:py-32 bg-[#F8F8F7] text-[#121312] border-b border-[#DFDFD9]">
       <div className="max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
-          <div className="max-w-2xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EAE3D5] text-[#1A2821] text-xs font-semibold tracking-wider uppercase border border-[#D3C8B6]">
-              Movement Menu
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+          <div className="space-y-4">
+            <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase">
+              DIRECTORY 01 - 05
             </div>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#1A2821] leading-tight">
-              PROGRAM REFORMER TERKURASI. <br />
-              <span className="italic font-normal text-[#C86D51]">DITUJUKAN UNTUK</span> SETIAP KEBUTUHAN TUBUH.
+            <h2 className="font-sans font-black text-4xl sm:text-6xl tracking-tight text-[#121312] uppercase leading-[0.95]">
+              CLASS <br />
+              DIRECTORY.
             </h2>
-            <p className="text-base sm:text-lg text-[#647069] leading-relaxed">
-              Mulai dari pondasi postur pertama hingga pemahatan otot atletis dan pemulihan tulang belakang, temukan kelas yang selaras dengan tujuan gerak Anda.
-            </p>
           </div>
-
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
-            {classes.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => setSelectedId(c.id)}
-                className={`px-4 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase whitespace-nowrap transition-all duration-200 border ${
-                  selectedId === c.id
-                    ? "bg-[#1A2821] text-[#FAF7F2] border-[#1A2821] shadow"
-                    : "bg-[#F3EFE6] text-[#647069] border-[#E5DDD0] hover:text-[#1A2821]"
-                }`}
-              >
-                {c.name}
-              </button>
-            ))}
-          </div>
+          <p className="text-sm sm:text-base text-[#5E605E] max-w-md leading-relaxed">
+            Pilihan format latihan yang disesuaikan dengan tingkat kontrol tubuh dan tujuan spesifik Anda, dari pondasi hingga rehabilitasi personal.
+          </p>
         </div>
 
-        <div className="bg-[#FFFFFF] rounded-[2.5rem] border border-[#E5DDD0] p-6 lg:p-12 shadow-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-6 relative">
-              <div className="aspect-[4/3] rounded-3xl overflow-hidden relative border border-[#E5DDD0] bg-[#F3EFE6]">
-                <Image
-                  src={activeClass.image}
-                  alt={activeClass.name}
-                  fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1A2821]/80 backdrop-blur-md text-[#FAF7F2] text-[11px] font-bold tracking-wider uppercase">
-                  <span>{activeClass.level}</span>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-7 divide-y divide-[#DFDFD9] border-y border-[#DFDFD9]">
+            {classes.map((item, idx) => {
+              const isSelected = item.id === activeId;
+              const numStr = `0${idx + 1}`;
 
-              <div className="mt-6 grid grid-cols-3 gap-3">
-                <div className="p-3 rounded-2xl bg-[#F3EFE6] border border-[#E5DDD0] text-center">
-                  <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-[#1A2821] mb-1">
-                    <Clock className="w-3.5 h-3.5 text-[#C86D51]" />
-                    <span>{activeClass.duration}</span>
-                  </div>
-                  <div className="text-[10px] text-[#647069] uppercase font-medium">Durasi Kelas</div>
-                </div>
-
-                <div className="p-3 rounded-2xl bg-[#F3EFE6] border border-[#E5DDD0] text-center">
-                  <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-[#1A2821] mb-1">
-                    <Flame className="w-3.5 h-3.5 text-[#C86D51]" />
-                    <span className="truncate">{activeClass.intensity}</span>
-                  </div>
-                  <div className="text-[10px] text-[#647069] uppercase font-medium">Intensitas</div>
-                </div>
-
-                <div className="p-3 rounded-2xl bg-[#F3EFE6] border border-[#E5DDD0] text-center">
-                  <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-[#1A2821] mb-1">
-                    <Users className="w-3.5 h-3.5 text-[#567568]" />
-                    <span>{activeClass.capacity}</span>
-                  </div>
-                  <div className="text-[10px] text-[#647069] uppercase font-medium">Kapasitas</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6 space-y-6">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-[#C86D51] mb-1">
-                  {activeClass.subtitle}
-                </div>
-                <h3 className="font-serif text-2xl sm:text-4xl font-bold text-[#1A2821]">
-                  {activeClass.name}
-                </h3>
-              </div>
-
-              <p className="text-sm sm:text-base text-[#647069] leading-relaxed">
-                {activeClass.description}
-              </p>
-
-              <div className="space-y-3 pt-2">
-                <div className="text-xs font-bold uppercase tracking-wider text-[#1A2821]">
-                  Fokus & Manfaat Utama:
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {activeClass.benefits.map((b, i) => (
-                    <div key={i} className="flex items-start gap-2.5">
-                      <div className="w-4 h-4 rounded-full bg-[#EFF4F1] flex items-center justify-center text-[#567568] shrink-0 mt-0.5">
-                        <Check className="w-2.5 h-2.5" />
+              return (
+                <div
+                  key={item.id}
+                  onClick={() => setActiveId(item.id)}
+                  className={`py-8 cursor-pointer transition-colors group ${
+                    isSelected ? "bg-[#F0F0EE]/80 px-4 -mx-4" : "hover:bg-[#F0F0EE]/40 px-4 -mx-4"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3">
+                        <span className="font-mono text-xs font-bold text-[#CE5A37]">
+                          {numStr}
+                        </span>
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[#5E605E] bg-[#E5E5E0] px-2 py-0.5">
+                          {item.level}
+                        </span>
+                        <span className="text-[10px] font-mono text-[#5E605E]">
+                          {item.duration} • {item.capacity}
+                        </span>
                       </div>
-                      <span className="text-xs text-[#1A2821] font-medium leading-tight">{b}</span>
+
+                      <h3 className="font-sans font-black text-2xl sm:text-3xl text-[#121312] uppercase tracking-tight group-hover:text-[#CE5A37] transition-colors">
+                        {item.name}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-[#5E605E] leading-relaxed max-w-xl">
+                        {item.description}
+                      </p>
                     </div>
-                  ))}
+
+                    <div className="pt-2 shrink-0">
+                      <div
+                        className={`w-9 h-9 flex items-center justify-center border transition-all ${
+                          isSelected
+                            ? "bg-[#121312] text-[#F8F8F7] border-[#121312]"
+                            : "border-[#DFDFD9] text-[#121312] group-hover:border-[#121312]"
+                        }`}
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {isSelected && (
+                    <div className="mt-6 pt-4 border-t border-[#DFDFD9] grid grid-cols-1 sm:grid-cols-2 gap-4 animate-in fade-in duration-200">
+                      <div>
+                        <div className="text-[10px] font-mono uppercase tracking-wider text-[#121312] font-bold mb-2">
+                          MANFAAT SPESIFIK:
+                        </div>
+                        <ul className="space-y-1.5 text-xs text-[#5E605E]">
+                          {item.benefits.slice(0, 3).map((b, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <span className="text-[#CE5A37] font-bold">•</span>
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="flex flex-col justify-between pt-2 sm:pt-0">
+                        <div className="text-[10px] font-mono uppercase tracking-wider text-[#121312] font-bold mb-1">
+                          AUDIENS REKOMENDASI:
+                        </div>
+                        <p className="text-xs text-[#5E605E] leading-relaxed mb-4">
+                          {item.suitableFor}
+                        </p>
+                        <a
+                          href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
+                            `Halo AURA Movement Studio! Saya ingin reservasi sesi kelas "${item.name}". Mohon informasi slot jadwal terdekat.`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#121312] hover:text-[#CE5A37] transition-colors"
+                        >
+                          <span>Book This Session via WhatsApp</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="lg:col-span-5 sticky top-28 hidden lg:block">
+            <div className="border border-[#121312] bg-[#E5E5E0] overflow-hidden">
+              <div className="aspect-[4/5] relative">
+                <Image
+                  src={selectedClass.image}
+                  alt={selectedClass.name}
+                  fill
+                  className="object-cover object-center grayscale contrast-110"
+                  sizes="500px"
+                />
+                <div className="absolute top-4 left-4 px-3 py-1 bg-[#121312] text-[#F8F8F7] text-[10px] font-mono uppercase tracking-widest">
+                  {selectedClass.name}
                 </div>
               </div>
-
-              <div className="p-4 rounded-2xl bg-[#F3EFE6]/60 border border-[#E5DDD0] space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#567568]">
-                  Sangat Direkomendasikan Untuk:
-                </span>
-                <p className="text-xs text-[#647069] leading-relaxed">
-                  {activeClass.suitableFor}
+              <div className="p-6 bg-[#121312] text-[#F8F8F7] space-y-3">
+                <div className="text-[10px] font-mono tracking-widest uppercase text-[#CE5A37]">
+                  FOCUS & INTENSITY
+                </div>
+                <div className="text-sm font-bold uppercase tracking-wider">
+                  {selectedClass.subtitle}
+                </div>
+                <p className="text-xs text-[#8A8D8A] leading-relaxed">
+                  {selectedClass.description}
                 </p>
-              </div>
-
-              <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <a
-                  href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
-                    `Halo AURA Pilates Studio! Saya ingin reservasi sesi kelas "${activeClass.name}". Mohon informasi slot jadwal terdekat.`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-[#1A2821] text-[#FAF7F2] text-xs font-semibold tracking-wider uppercase hover:bg-[#C86D51] transition-all shadow-md group"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Book Kelas Ini via WhatsApp</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </a>
-
-                <a
-                  href="#jadwal"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#F3EFE6] text-[#1A2821] text-xs font-semibold tracking-wider uppercase hover:bg-[#EAE3D5] transition-colors border border-[#E5DDD0]"
-                >
-                  <span>Cek Timetable Mingguan</span>
-                </a>
+                <div className="pt-2">
+                  <a
+                    href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
+                      `Halo AURA Movement Studio! Saya ingin bertanya mengenai ketersediaan kelas "${selectedClass.name}".`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#F8F8F7] hover:text-[#CE5A37] transition-colors"
+                  >
+                    <span>Cek Slot Kelas via WhatsApp</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>

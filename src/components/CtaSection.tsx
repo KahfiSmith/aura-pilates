@@ -1,30 +1,26 @@
 import { studioData } from "@/data/pilates";
-import { ArrowRight, MessageCircle, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function CtaSection() {
   const { contact } = studioData;
 
   const trialMessage =
-    "Halo AURA Pilates Studio! Saya ingin mengklaim First Trial Experience (Rp 175.000). Mohon bantu cek jadwal terdekat untuk saya.";
+    "Halo AURA Movement Studio! Saya ingin booking sesi latihan pertama saya.";
 
   return (
-    <section className="py-24 sm:py-32 bg-[#1A2821] text-[#FAF7F2] relative overflow-hidden">
-      <div className="absolute top-0 right-0 -mt-16 -mr-16 w-96 h-96 rounded-full bg-[#C86D51]/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-96 h-96 rounded-full bg-[#567568]/20 blur-3xl pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto px-5 lg:px-10 text-center relative z-10 space-y-8">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2B3E34] text-[#D3C8B6] text-xs font-semibold tracking-wider uppercase border border-[#E5DDD0]/20">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#C86D51]" />
-          <span>Langkah Pertama Anda Dimulai di Sini</span>
+    <section className="py-24 sm:py-36 bg-[#121312] text-[#F8F8F7] border-b border-[#2A2C2A]">
+      <div className="max-w-5xl mx-auto px-5 lg:px-10 text-center space-y-8">
+        <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase">
+          START YOUR PRACTICE
         </div>
 
-        <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#FAF7F2] leading-tight">
-          TUBUH ANDA LAYAK MENDAPATKAN <br />
-          <span className="italic font-normal text-[#C86D51]">PERHATIAN DAN KESELARASAN</span> TERBAIK.
+        <h2 className="font-sans font-black text-5xl sm:text-7xl lg:text-8xl tracking-tighter uppercase leading-[0.92]">
+          READY <br />
+          TO MOVE?
         </h2>
 
-        <p className="text-base sm:text-lg text-[#D3C8B6] max-w-2xl mx-auto leading-relaxed">
-          Ambil slot First Trial Experience seharga Rp 175.000 (diskon 50% dari harga normal). Rasakan perbedaan sensasi tubuh yang lebih ringan, tegak, dan bertenaga sejak sesi pertama.
+        <p className="text-base sm:text-xl text-[#8A8D8A] max-w-lg mx-auto leading-relaxed">
+          Book your first session. Precision reformer pilates designed to build strength, control and confidence in Surabaya Barat.
         </p>
 
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -32,25 +28,26 @@ export function CtaSection() {
             href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(trialMessage)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#C86D51] text-[#FAF7F2] font-semibold text-xs tracking-wider uppercase hover:bg-[#B55B40] transition-all duration-300 shadow-xl group"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#CE5A37] text-[#F8F8F7] font-bold text-xs tracking-widest uppercase hover:bg-[#B54726] transition-colors group"
           >
-            <MessageCircle className="w-4 h-4" />
-            <span>Klaim Trial Rp 175k via WhatsApp</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            <span>Book a Class</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
 
           <a
-            href="#jadwal"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#2B3E34] text-[#FAF7F2] font-semibold text-xs tracking-wider uppercase hover:bg-[#FAF7F2] hover:text-[#1A2821] transition-all border border-[#E5DDD0]/20"
+            href="#schedule"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-transparent text-[#F8F8F7] font-bold text-xs tracking-widest uppercase border border-[#F8F8F7]/30 hover:border-[#F8F8F7] transition-colors"
           >
-            <span>Eksplorasi Timetable</span>
+            <span>View Schedule</span>
           </a>
         </div>
 
-        <div className="pt-8 text-xs text-[#8E9A93] space-x-6">
-          <span>• Tanpa Kontrak Mengikat</span>
-          <span>• Maksimal 6 Member per Kelas</span>
-          <span>• Asesmen Postur Gratis</span>
+        <div className="pt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-[11px] font-mono text-[#5E605E] uppercase">
+          <span>SURABAYA BARAT</span>
+          <span>•</span>
+          <span>BALANCED BODY ALLEGRO 2</span>
+          <span>•</span>
+          <span>STOTT CERTIFIED</span>
         </div>
       </div>
     </section>

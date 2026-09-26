@@ -1,74 +1,79 @@
+import Image from "next/image";
 import { studioData } from "@/data/pilates";
-import { Star, Quote, CheckCircle } from "lucide-react";
 
 export function TransformationStories() {
   const { reviews } = studioData;
 
-  return (
-    <section id="testimoni" className="py-24 sm:py-32 bg-[#F3EFE6] text-[#1A2821] border-b border-[#E5DDD0]">
-      <div className="max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
-          <div className="max-w-2xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF7F2] text-[#1A2821] text-xs font-semibold tracking-wider uppercase border border-[#E5DDD0]">
-              Member Stories
-            </div>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#1A2821] leading-tight">
-              TRANSFORMASI NYATA. <br />
-              <span className="italic font-normal text-[#C86D51]">CERITA DARI</span> MEMBER KOMUNITAS AURA.
-            </h2>
-            <p className="text-base text-[#647069] leading-relaxed">
-              Mulai dari pemulihan nyeri pinggang hingga kepercayaan diri baru melalui postur tubuh yang tegak dan selaras.
-            </p>
-          </div>
+  const communityImages = [
+    {
+      url: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=800&auto=format&fit=crop",
+      alt: "Controlled Reformer Movement Class",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop",
+      alt: "Postural Spine Alignment Stretch",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop",
+      alt: "Instructor Alignment Correction",
+    },
+    {
+      url: "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?q=80&w=800&auto=format&fit=crop",
+      alt: "Mindful Breath and Carriage Flow",
+    },
+  ];
 
-          <div className="p-6 rounded-3xl bg-[#FAF7F2] border border-[#E5DDD0] flex items-center gap-6 shadow-sm shrink-0">
-            <div>
-              <div className="flex text-[#C86D51] mb-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#C86D51]" />
-                ))}
-              </div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="font-serif text-2xl font-bold text-[#1A2821]">4.9</span>
-                <span className="text-xs text-[#647069] font-medium">/ 5.0 Google Reviews</span>
-              </div>
+  return (
+    <section id="community" className="py-20 lg:py-32 bg-[#F0F0EE] text-[#121312] border-b border-[#DFDFD9]">
+      <div className="max-w-7xl mx-auto px-5 lg:px-10">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+          <div className="space-y-4">
+            <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase">
+              STUDIO COMMUNITY
             </div>
-            <div className="w-[1px] h-10 bg-[#E5DDD0]" />
-            <div className="text-xs text-[#647069] font-medium max-w-[140px] leading-relaxed">
-              Berdasarkan 180+ ulasan terverifikasi di Surabaya
-            </div>
+            <h2 className="font-sans font-black text-4xl sm:text-6xl tracking-tight text-[#121312] uppercase leading-[0.95]">
+              MOVEMENT <br />
+              EXPERIENCES.
+            </h2>
           </div>
+          <p className="text-sm sm:text-base text-[#5E605E] max-w-md leading-relaxed">
+            Membangun kesadaran tubuh baru melalui disiplin gerak yang konsisten dan dukungan komunitas yang hangat di Surabaya Barat.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {reviews.map((rev) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          {communityImages.map((img, i) => (
             <div
-              key={rev.id}
-              className="p-8 rounded-[2.5rem] bg-[#FAF7F2] border border-[#E5DDD0] flex flex-col justify-between hover:border-[#C86D51]/50 hover:shadow-xl transition-all duration-300 relative group"
+              key={i}
+              className="aspect-square bg-[#E5E5E0] border border-[#121312] overflow-hidden relative group"
             >
-              <div>
-                <Quote className="w-8 h-8 text-[#C86D51] opacity-60 mb-4" />
-
-                <div className="flex text-[#C86D51] mb-4">
-                  {[...Array(rev.rating)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-[#C86D51]" />
-                  ))}
-                </div>
-
-                <blockquote className="text-sm sm:text-base text-[#1A2821] font-medium leading-relaxed mb-6">
-                  &ldquo;{rev.comment}&rdquo;
-                </blockquote>
+              <Image
+                src={img.url}
+                alt={img.alt}
+                fill
+                className="object-cover grayscale contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                sizes="(max-width: 768px) 50vw, 300px"
+              />
+              <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-[#121312] text-[#F8F8F7] text-[9px] font-mono tracking-widest uppercase">
+                FRAME 0{i + 1}
               </div>
+            </div>
+          ))}
+        </div>
 
-              <div className="pt-6 border-t border-[#E5DDD0]/70 space-y-3">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF4F1] text-[#567568] text-[11px] font-bold">
-                  <CheckCircle className="w-3.5 h-3.5 text-[#567568]" />
-                  <span>{rev.result}</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-[#DFDFD9] pt-12">
+          {reviews.map((rev) => (
+            <div key={rev.id} className="space-y-4 flex flex-col justify-between">
+              <blockquote className="font-sans text-base sm:text-lg text-[#121312] font-semibold leading-snug">
+                &ldquo;{rev.comment}&rdquo;
+              </blockquote>
+
+              <div className="pt-2 border-t border-[#DFDFD9]">
+                <div className="font-sans font-black text-sm text-[#121312] uppercase tracking-wide">
+                  {rev.name}
                 </div>
-
-                <div>
-                  <p className="font-serif text-base font-bold text-[#1A2821]">{rev.name}</p>
-                  <p className="text-xs text-[#647069]">{rev.role} • {rev.classType}</p>
+                <div className="text-xs font-mono text-[#5E605E] mt-0.5">
+                  {rev.role} / {rev.classType}
                 </div>
               </div>
             </div>

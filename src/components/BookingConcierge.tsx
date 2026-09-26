@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { studioData } from "@/data/pilates";
-import { MessageCircle, Phone, CheckCircle, ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 
 export function BookingConcierge() {
   const { contact } = studioData;
@@ -40,67 +40,58 @@ export function BookingConcierge() {
     e.preventDefault();
 
     const formattedMessage =
-      `Halo Concierge AURA Pilates Studio! Saya ingin mengajukan reservasi kelas:\n\n` +
+      `Halo AURA Movement Studio! Saya ingin mengajukan reservasi sesi latihan:\n\n` +
       `• Nama: ${fullName.trim() || "Calon Member"}\n` +
       `• Pilihan Kelas: ${selectedClass}\n` +
       `• Waktu yang Diinginkan: ${selectedTimeSlot}\n` +
       `• Catatan Tubuh/Keluhan: ${healthNote}\n\n` +
-      `Mohon informasi slot jadwal yang masih tersedia dan instruksi kedatangan studio. Terima kasih!`;
+      `Mohon konfirmasi ketersediaan slot carriage dan instruksi kedatangan studio. Terima kasih!`;
 
     const waUrl = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(formattedMessage)}`;
     window.open(waUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <section id="reservasi" className="py-24 sm:py-32 bg-[#FAF7F2] text-[#1A2821] border-b border-[#E5DDD0]">
+    <section id="booking" className="py-20 lg:py-32 bg-[#F8F8F7] text-[#121312] border-b border-[#DFDFD9]">
       <div className="max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="bg-[#FFFFFF] rounded-[2.5rem] border border-[#E5DDD0] shadow-2xl overflow-hidden p-8 sm:p-12 lg:p-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="border border-[#121312] bg-[#FFFFFF] p-8 sm:p-12 lg:p-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EFF4F1] text-[#567568] text-xs font-semibold tracking-wider uppercase">
-                Direct WhatsApp Concierge
+              <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase">
+                RESERVATION DIRECTORY
               </div>
 
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1A2821] leading-tight">
-                MULAI PERJALANAN <br />
-                <span className="italic font-normal text-[#C86D51]">KESELARASAN TUBUH</span> ANDA HARI INI.
+              <h2 className="font-sans font-black text-4xl sm:text-5xl tracking-tight text-[#121312] uppercase leading-[0.95]">
+                BOOK A <br />
+                SESSION.
               </h2>
 
-              <p className="text-sm sm:text-base text-[#647069] leading-relaxed">
-                Pilih program yang Anda inginkan dan tim concierge kami akan segera mencocokkan jadwal studio terbaik untuk Anda dalam hitungan menit via WhatsApp.
+              <p className="text-sm sm:text-base text-[#5E605E] leading-relaxed">
+                Pilih format kelas dan preferensi waktu Anda. Tim studio concierge kami akan mencocokkan jadwal carriage terbaik dan mengonfirmasi via WhatsApp dalam hitungan menit.
               </p>
 
-              <div className="space-y-3 pt-4 border-t border-[#E5DDD0]">
-                <div className="flex items-center gap-3 text-xs text-[#1A2821] font-medium">
-                  <CheckCircle className="w-4 h-4 text-[#567568] shrink-0" />
-                  <span>Konfirmasi instan langsung ke WhatsApp tim studio</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-[#1A2821] font-medium">
-                  <CheckCircle className="w-4 h-4 text-[#567568] shrink-0" />
-                  <span>Konsultasi gratis 15 menit asesmen postur tubuh</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-[#1A2821] font-medium">
-                  <CheckCircle className="w-4 h-4 text-[#567568] shrink-0" />
-                  <span>Kebijakan reschedule fleksibel hingga 12 jam sebelum kelas</span>
-                </div>
+              <div className="pt-4 border-t border-[#DFDFD9] space-y-2 text-xs font-mono text-[#5E605E] uppercase">
+                <div>• KONFIRMASI INSTAN KE WHATSAPP RESMI</div>
+                <div>• FREE 15 MENIT POSTURE ALIGNMENT BRIEFING</div>
+                <div>• PEMBATALAN BEBAS PENALTI HINGGA 12 JAM</div>
               </div>
 
               <div className="pt-4">
                 <a
                   href={`tel:${contact.phone}`}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#1A2821] hover:text-[#C86D51] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#121312] hover:text-[#CE5A37] transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-[#C86D51]" />
-                  <span>Atau hubungi hotline studio: {contact.formattedPhone}</span>
+                  <Phone className="w-4 h-4 text-[#CE5A37]" />
+                  <span>HOTLINE STUDIO: {contact.formattedPhone}</span>
                 </a>
               </div>
             </div>
 
-            <div className="lg:col-span-7 bg-[#F3EFE6] p-6 sm:p-10 rounded-3xl border border-[#E5DDD0]">
-              <form onSubmit={handleBookingSubmit} className="space-y-5">
+            <div className="lg:col-span-7 bg-[#F0F0EE] p-6 sm:p-10 border border-[#DFDFD9]">
+              <form onSubmit={handleBookingSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="fullname" className="block text-xs font-bold uppercase tracking-wider text-[#1A2821] mb-2">
-                    Nama Lengkap Anda
+                  <label htmlFor="fullname" className="block text-xs font-mono uppercase tracking-wider text-[#121312] font-bold mb-2">
+                    NAMA LENGKAP
                   </label>
                   <input
                     id="fullname"
@@ -109,19 +100,19 @@ export function BookingConcierge() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Contoh: Jessica Santoso"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#FFFFFF] border border-[#E5DDD0] text-sm text-[#1A2821] focus:outline-none focus:border-[#C86D51] focus:ring-1 focus:ring-[#C86D51] transition-all"
+                    className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] transition-colors font-medium"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="class-select" className="block text-xs font-bold uppercase tracking-wider text-[#1A2821] mb-2">
-                    Pilihan Program / Kelas
+                  <label htmlFor="class-select" className="block text-xs font-mono uppercase tracking-wider text-[#121312] font-bold mb-2">
+                    PILIHAN KELAS / PAKET
                   </label>
                   <select
                     id="class-select"
                     value={selectedClass}
                     onChange={(e) => setSelectedClass(e.target.value)}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#FFFFFF] border border-[#E5DDD0] text-sm text-[#1A2821] focus:outline-none focus:border-[#C86D51] focus:ring-1 focus:ring-[#C86D51] transition-all"
+                    className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] transition-colors font-medium"
                   >
                     {classOptions.map((opt) => (
                       <option key={opt} value={opt}>
@@ -133,14 +124,14 @@ export function BookingConcierge() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="time-select" className="block text-xs font-bold uppercase tracking-wider text-[#1A2821] mb-2">
-                      Waktu Latihan Pilihan
+                    <label htmlFor="time-select" className="block text-xs font-mono uppercase tracking-wider text-[#121312] font-bold mb-2">
+                      PREFERENSI WAKTU
                     </label>
                     <select
                       id="time-select"
                       value={selectedTimeSlot}
                       onChange={(e) => setSelectedTimeSlot(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-[#FFFFFF] border border-[#E5DDD0] text-sm text-[#1A2821] focus:outline-none focus:border-[#C86D51] focus:ring-1 focus:ring-[#C86D51] transition-all"
+                      className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] transition-colors font-medium"
                     >
                       {timeOptions.map((opt) => (
                         <option key={opt} value={opt}>
@@ -151,14 +142,14 @@ export function BookingConcierge() {
                   </div>
 
                   <div>
-                    <label htmlFor="health-select" className="block text-xs font-bold uppercase tracking-wider text-[#1A2821] mb-2">
-                      Fokus / Kondisi Tubuh
+                    <label htmlFor="health-select" className="block text-xs font-mono uppercase tracking-wider text-[#121312] font-bold mb-2">
+                      KONDISI TUBUH / FOKUS
                     </label>
                     <select
                       id="health-select"
                       value={healthNote}
                       onChange={(e) => setHealthNote(e.target.value)}
-                      className="w-full px-4 py-3 rounded-2xl bg-[#FFFFFF] border border-[#E5DDD0] text-sm text-[#1A2821] focus:outline-none focus:border-[#C86D51] focus:ring-1 focus:ring-[#C86D51] transition-all"
+                      className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] transition-colors font-medium"
                     >
                       {healthOptions.map((opt) => (
                         <option key={opt} value={opt}>
@@ -169,13 +160,12 @@ export function BookingConcierge() {
                   </div>
                 </div>
 
-                <div className="pt-3">
+                <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#1A2821] text-[#FAF7F2] font-semibold text-xs tracking-wider uppercase hover:bg-[#C86D51] transition-all duration-300 shadow-md hover:shadow-lg group cursor-pointer"
+                    className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[#121312] text-[#F8F8F7] font-bold text-xs tracking-widest uppercase hover:bg-[#CE5A37] transition-colors cursor-pointer group"
                   >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>Kirim Reservasi ke WhatsApp Resmi</span>
+                    <span>Kirim Reservasi via WhatsApp</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>

@@ -5,26 +5,26 @@ import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "AURA Pilates Studio: Boutique Reformer & Movement Club Surabaya",
+  title: "AURA Movement Studio: Contemporary Reformer Pilates Surabaya",
   description:
-    "Boutique reformer pilates studio di Surabaya Barat dengan peralatan Balanced Body Allegro 2, instruktur bersertifikasi internasional STOTT, dan suasana tenang berstandar premium.",
+    "Contemporary pilates movement studio di Surabaya Barat dengan peralatan Balanced Body Allegro 2, instruktur bersertifikasi internasional STOTT, dan fokus pada presisi gerak fungsional.",
   keywords: [
     "pilates surabaya",
     "reformer pilates surabaya",
-    "aura pilates studio",
+    "aura movement studio",
     "stott pilates surabaya",
     "pilates bukit darmo golf",
     "reformer class surabaya barat",
-    "pilates prenatal surabaya",
+    "athletic pilates surabaya",
     "skoliosis pilates surabaya",
   ],
-  authors: [{ name: "AURA Pilates Studio" }],
+  authors: [{ name: "AURA Movement Studio" }],
   openGraph: {
-    title: "AURA Pilates Studio: Boutique Reformer & Movement Club Surabaya",
+    title: "AURA Movement Studio: Contemporary Reformer Pilates Surabaya",
     description:
-      "Boutique reformer pilates studio di Surabaya Barat dengan peralatan Balanced Body Allegro 2, instruktur bersertifikasi STOTT, dan suasana tenang berstandar premium.",
+      "Contemporary pilates movement studio di Surabaya Barat dengan peralatan Balanced Body Allegro 2, instruktur bersertifikasi STOTT, dan fokus pada presisi gerak fungsional.",
     url: "https://aurapilates.id",
-    siteName: "AURA Pilates Studio",
+    siteName: "AURA Movement Studio",
     locale: "id_ID",
     type: "website",
   },
@@ -40,7 +40,7 @@ export default function RootLayout({
       <head>
         <JsonLd />
       </head>
-      <body className="antialiased min-h-screen flex flex-col bg-[#FAF7F2] text-[#1A2821]">
+      <body className="antialiased min-h-screen flex flex-col bg-[#F8F8F7] text-[#121312]">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
