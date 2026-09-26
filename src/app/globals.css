@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAF7F2;
+  --foreground: #1A2821;
+  --surface: #F3EFE6;
+  --surface-card: #FFFFFF;
+  --surface-accent: #EAE3D5;
+  --border: #E5DDD0;
+  --border-bold: #D3C8B6;
+  --accent-olive: #1A2821;
+  --accent-olive-light: #2B3E34;
+  --accent-sage: #567568;
+  --accent-sage-light: #EFF4F1;
+  --accent-terracotta: #C86D51;
+  --accent-terracotta-hover: #B55B40;
+  --accent-terracotta-light: #FAEEEA;
+  --text-muted: #647069;
+  --text-light: #8E9A93;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-card: var(--surface-card);
+  --color-surface-accent: var(--surface-accent);
+  --color-border-subtle: var(--border);
+  --color-border-bold: var(--border-bold);
+  --color-olive: var(--accent-olive);
+  --color-olive-light: var(--accent-olive-light);
+  --color-sage: var(--accent-sage);
+  --color-sage-light: var(--accent-sage-light);
+  --color-terracotta: var(--accent-terracotta);
+  --color-terracotta-hover: var(--accent-terracotta-hover);
+  --color-terracotta-light: var(--accent-terracotta-light);
+  --color-text-muted: var(--text-muted);
+  --color-text-light: var(--text-light);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #C86D51;
+  color: #FFFFFF;
+}
