@@ -3,9 +3,13 @@
 import { useState } from "react";
 import { studioData } from "@/data/pilates";
 import { ArrowRight, Phone } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+import { KineticHeading } from "@/components/motion/KineticHeading";
+import { RevealInView } from "@/components/motion/RevealInView";
 
 export function BookingConcierge() {
   const { contact } = studioData;
+  const shouldReduceMotion = useReducedMotion();
 
   const [selectedClass, setSelectedClass] = useState("First Trial Experience (Rp 175.000)");
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("Pagi (07:00 - 10:00 WIB)");
@@ -54,40 +58,50 @@ export function BookingConcierge() {
   return (
     <section id="booking" className="py-20 lg:py-32 bg-[#F8F8F7] text-[#121312] border-b border-[#DFDFD9]">
       <div className="max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="border border-[#121312] bg-[#FFFFFF] p-8 sm:p-12 lg:p-16">
+        <div className="border border-[#121312] bg-[#FFFFFF] p-8 sm:p-12 lg:p-16 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5 space-y-6">
-              <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase">
-                RESERVATION DIRECTORY
-              </div>
+              <RevealInView delay={0.05} direction="up" distance={15}>
+                <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase flex items-center gap-2">
+                  <span className="w-2 h-[1px] bg-[#CE5A37]" />
+                  RESERVATION DIRECTORY
+                </div>
+              </RevealInView>
 
-              <h2 className="font-sans font-black text-4xl sm:text-5xl tracking-tight text-[#121312] uppercase leading-[0.95]">
-                BOOK A <br />
-                SESSION.
-              </h2>
+              <KineticHeading
+                as="h2"
+                lines={["BOOK A", "SESSION."]}
+                className="font-sans font-black text-4xl sm:text-5xl tracking-tight text-[#121312] uppercase leading-[0.95]"
+              />
 
-              <p className="text-sm sm:text-base text-[#5E605E] leading-relaxed">
-                Pilih format kelas dan preferensi waktu Anda. Tim studio concierge kami akan mencocokkan jadwal carriage terbaik dan mengonfirmasi via WhatsApp dalam hitungan menit.
-              </p>
+              <RevealInView delay={0.2} direction="up">
+                <p className="text-sm sm:text-base text-[#5E605E] leading-relaxed">
+                  Pilih format kelas dan preferensi waktu Anda. Tim studio concierge kami akan mencocokkan jadwal carriage terbaik dan mengonfirmasi via WhatsApp dalam hitungan menit.
+                </p>
+              </RevealInView>
 
-              <div className="pt-4 border-t border-[#DFDFD9] space-y-2 text-xs font-mono text-[#5E605E] uppercase">
-                <div>• KONFIRMASI INSTAN KE WHATSAPP RESMI</div>
-                <div>• FREE 15 MENIT POSTURE ALIGNMENT BRIEFING</div>
-                <div>• PEMBATALAN BEBAS PENALTI HINGGA 12 JAM</div>
-              </div>
+              <RevealInView delay={0.3} direction="up">
+                <div className="pt-4 border-t border-[#DFDFD9] space-y-2 text-xs font-mono text-[#5E605E] uppercase">
+                  <div>• KONFIRMASI INSTAN KE WHATSAPP RESMI</div>
+                  <div>• FREE 15 MENIT POSTURE ALIGNMENT BRIEFING</div>
+                  <div>• PEMBATALAN BEBAS PENALTI HINGGA 12 JAM</div>
+                </div>
+              </RevealInView>
 
               <div className="pt-4">
-                <a
+                <motion.a
                   href={`tel:${contact.phone}`}
+                  whileHover={{ x: 3 }}
+                  transition={{ type: "spring", stiffness: 400 }}
                   className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#121312] hover:text-[#CE5A37] transition-colors"
                 >
                   <Phone className="w-4 h-4 text-[#CE5A37]" />
                   <span>HOTLINE STUDIO: {contact.formattedPhone}</span>
-                </a>
+                </motion.a>
               </div>
             </div>
 
-            <div className="lg:col-span-7 bg-[#F0F0EE] p-6 sm:p-10 border border-[#DFDFD9]">
+            <RevealInView delay={0.25} direction="up" className="lg:col-span-7 bg-[#F0F0EE] p-6 sm:p-10 border border-[#DFDFD9]">
               <form onSubmit={handleBookingSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="fullname" className="block text-xs font-mono uppercase tracking-wider text-[#121312] font-bold mb-2">
@@ -100,7 +114,7 @@ export function BookingConcierge() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Contoh: Jessica Santoso"
-                    className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] transition-colors font-medium"
+                    className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] focus:ring-2 focus:ring-[#CE5A37]/20 transition-all font-medium"
                   />
                 </div>
 
@@ -112,7 +126,7 @@ export function BookingConcierge() {
                     id="class-select"
                     value={selectedClass}
                     onChange={(e) => setSelectedClass(e.target.value)}
-                    className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] transition-colors font-medium"
+                    className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] focus:ring-2 focus:ring-[#CE5A37]/20 transition-all font-medium"
                   >
                     {classOptions.map((opt) => (
                       <option key={opt} value={opt}>
@@ -131,7 +145,7 @@ export function BookingConcierge() {
                       id="time-select"
                       value={selectedTimeSlot}
                       onChange={(e) => setSelectedTimeSlot(e.target.value)}
-                      className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] transition-colors font-medium"
+                      className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] focus:ring-2 focus:ring-[#CE5A37]/20 transition-all font-medium"
                     >
                       {timeOptions.map((opt) => (
                         <option key={opt} value={opt}>
@@ -149,7 +163,7 @@ export function BookingConcierge() {
                       id="health-select"
                       value={healthNote}
                       onChange={(e) => setHealthNote(e.target.value)}
-                      className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] transition-colors font-medium"
+                      className="w-full px-4 py-3.5 bg-[#FFFFFF] border border-[#DFDFD9] text-sm text-[#121312] focus:outline-none focus:border-[#121312] focus:ring-2 focus:ring-[#CE5A37]/20 transition-all font-medium"
                     >
                       {healthOptions.map((opt) => (
                         <option key={opt} value={opt}>
@@ -161,16 +175,19 @@ export function BookingConcierge() {
                 </div>
 
                 <div className="pt-2">
-                  <button
+                  <motion.button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[#121312] text-[#F8F8F7] font-bold text-xs tracking-widest uppercase hover:bg-[#CE5A37] transition-colors cursor-pointer group"
+                    whileHover={{ scale: shouldReduceMotion ? 1 : 1.015 }}
+                    whileTap={{ scale: shouldReduceMotion ? 1 : 0.985 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[#121312] text-[#F8F8F7] font-bold text-xs tracking-widest uppercase hover:bg-[#CE5A37] transition-colors cursor-pointer group shadow-sm"
                   >
                     <span>Kirim Reservasi via WhatsApp</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                  </motion.button>
                 </div>
               </form>
-            </div>
+            </RevealInView>
           </div>
         </div>
       </div>
