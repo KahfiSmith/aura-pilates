@@ -55,7 +55,15 @@ export function Footer() {
                 { label: "Guide", href: "#faq" },
               ].map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="hover:text-[#F8F8F7] hover:translate-x-1 inline-block transition-transform">
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollTo(item.href, { offset: -76, duration: 1.25 });
+                      window.history.pushState(null, "", item.href);
+                    }}
+                    className="hover:text-[#F8F8F7] hover:translate-x-1 inline-block transition-transform"
+                  >
                     {item.label}
                   </a>
                 </li>

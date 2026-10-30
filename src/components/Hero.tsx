@@ -7,10 +7,12 @@ import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { MOTION_EASE } from "@/lib/motion";
 import { getGsap } from "@/lib/gsap";
+import { useLenis } from "@/components/motion/SmoothScrollProvider";
 
 export function Hero() {
   const { contact } = studioData;
   const shouldReduceMotion = useReducedMotion();
+  const { scrollTo } = useLenis();
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const imageWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -159,6 +161,11 @@ export function Hero() {
 
                 <motion.a
                   href="#studio-intro"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo("#studio-intro", { offset: -76, duration: 1.25 });
+                    window.history.pushState(null, "", "#studio-intro");
+                  }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 350, damping: 25 }}

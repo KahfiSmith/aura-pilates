@@ -6,12 +6,23 @@ import { studioData } from "@/data/pilates";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll } from "motion/react";
 import { MOTION_EASE } from "@/lib/motion";
+import { useLenis } from "@/components/motion/SmoothScrollProvider";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { contact } = studioData;
   const { scrollY } = useScroll();
+  const { scrollTo } = useLenis();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      scrollTo(href, { offset: -76, duration: 1.25 });
+      window.history.pushState(null, "", href);
+      setIsOpen(false);
+    }
+  };
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
@@ -71,6 +82,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-[#5E605E] hover:text-[#121312] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-[#121312] hover:after:w-full after:transition-all after:duration-300"
             >
               {link.label}
@@ -128,7 +140,7 @@ export function Navbar() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   variants={{
                     hidden: { opacity: 0, x: -12 },
                     visible: { opacity: 1, x: 0 },

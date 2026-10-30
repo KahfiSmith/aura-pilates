@@ -5,10 +5,12 @@ import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { KineticHeading } from "@/components/motion/KineticHeading";
 import { RevealInView } from "@/components/motion/RevealInView";
+import { useLenis } from "@/components/motion/SmoothScrollProvider";
 
 export function CtaSection() {
   const { contact } = studioData;
   const shouldReduceMotion = useReducedMotion();
+  const { scrollTo } = useLenis();
 
   const trialMessage =
     "Halo AURA Movement Studio! Saya ingin booking sesi latihan pertama saya.";
@@ -61,6 +63,11 @@ export function CtaSection() {
 
             <motion.a
               href="#schedule"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("#schedule", { offset: -76, duration: 1.25 });
+                window.history.pushState(null, "", "#schedule");
+              }}
               whileHover={{ scale: shouldReduceMotion ? 1 : 1.02 }}
               whileTap={{ scale: shouldReduceMotion ? 1 : 0.98 }}
               transition={{ type: "spring", stiffness: 350, damping: 25 }}

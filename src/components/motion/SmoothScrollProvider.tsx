@@ -21,6 +21,11 @@ const LenisContext = createContext<LenisContextType>({
     } else if (typeof window !== "undefined") {
       if (typeof target === "number") {
         window.scrollTo({ top: target, behavior: "smooth" });
+      } else if (typeof target === "string" && target.startsWith("#")) {
+        const el = document.querySelector(target);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
       }
     }
   },
@@ -52,6 +57,10 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       wheelMultiplier: 0.95,
       touchMultiplier: 1.5,
       infinite: false,
+      anchors: {
+        offset: -76,
+        duration: 1.25,
+      },
     });
 
     lenisRef.current = lenis;
@@ -68,21 +77,32 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     gsap.ticker.add(handleTicker);
     gsap.ticker.lagSmoothing(0);
 
-    // Intercept internal hash anchor navigation for smooth scrolling with header offset
+    // Global listener to prevent native browser anchor jumping and glide smoothly via Lenis
     const handleAnchorClick = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest("a");
-      if (!target) return;
+      const path = e.composedPath ? e.composedPath() : [];
+      let anchor: HTMLAnchorElement | null = null;
 
-      const href = target.getAttribute("href");
+      for (const el of path) {
+        if (el instanceof HTMLAnchorElement && el.href) {
+          anchor = el;
+          break;
+        }
+      }
+      if (!anchor && e.target instanceof Element) {
+        anchor = e.target.closest("a");
+      }
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
       if (href && href.startsWith("#") && href.length > 1) {
-        const element = document.querySelector(href);
-        if (element) {
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
           e.preventDefault();
-          lenis.scrollTo(element as HTMLElement, {
+          e.stopPropagation();
+          lenis.scrollTo(targetElement as HTMLElement, {
             offset: -76,
-            duration: 1.2,
+            duration: 1.25,
           });
-          // Update URL hash without native browser jump
           window.history.pushState(null, "", href);
         }
       }
@@ -109,6 +129,11 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         } else if (typeof window !== "undefined") {
           if (typeof target === "number") {
             window.scrollTo({ top: target, behavior: "smooth" });
+          } else if (typeof target === "string" && target.startsWith("#")) {
+            const el = document.querySelector(target);
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth" });
+            }
           }
         }
       },
