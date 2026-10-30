@@ -1,35 +1,56 @@
+"use client";
+
 import Image from "next/image";
 import { studioData } from "@/data/pilates";
 import { ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+import { KineticHeading } from "@/components/motion/KineticHeading";
+import { RevealInView } from "@/components/motion/RevealInView";
+import { MOTION_EASE } from "@/lib/motion";
 
 export function InstructorRoster() {
   const { instructors, contact } = studioData;
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="instructors" className="py-20 lg:py-32 bg-[#F0F0EE] text-[#121312] border-b border-[#DFDFD9]">
       <div className="max-w-7xl mx-auto px-5 lg:px-10">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
           <div className="space-y-4">
-            <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase">
-              STUDIO FACULTY
-            </div>
-            <h2 className="font-sans font-black text-4xl sm:text-6xl tracking-tight text-[#121312] uppercase leading-[0.95]">
-              MEET THE <br />
-              INSTRUCTORS.
-            </h2>
+            <RevealInView delay={0.05} direction="up" distance={15}>
+              <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase flex items-center gap-2">
+                <span className="w-2 h-[1px] bg-[#CE5A37]" />
+                STUDIO FACULTY
+              </div>
+            </RevealInView>
+            <KineticHeading
+              as="h2"
+              lines={["MEET THE", "INSTRUCTORS."]}
+              className="font-sans font-black text-4xl sm:text-6xl tracking-tight text-[#121312] uppercase leading-[0.95]"
+            />
           </div>
-          <p className="text-sm sm:text-base text-[#5E605E] max-w-md leading-relaxed">
-            Seluruh pengajar di AURA memegang sertifikasi internasional resmi (STOTT / Polestar / Balanced Body) dengan pendekatan personal dan pemahaman anatomi mendalam.
-          </p>
+          <RevealInView delay={0.2} direction="up">
+            <p className="text-sm sm:text-base text-[#5E605E] max-w-md leading-relaxed">
+              Seluruh pengajar di AURA memegang sertifikasi internasional resmi (STOTT / Polestar / Balanced Body) dengan pendekatan personal dan pemahaman anatomi mendalam.
+            </p>
+          </RevealInView>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {instructors.map((inst, index) => (
-            <div
+            <motion.div
               key={inst.id}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{
+                duration: 0.8,
+                delay: shouldReduceMotion ? 0 : index * 0.15,
+                ease: MOTION_EASE.editorial,
+              }}
               className={`space-y-6 ${index === 1 ? "md:translate-y-6" : ""}`}
             >
-              <div className="aspect-[3/4] bg-[#E5E5E0] border border-[#121312] overflow-hidden relative group">
+              <div className="aspect-[3/4] bg-[#E5E5E0] border border-[#121312] overflow-hidden relative group shadow-sm">
                 <Image
                   src={inst.photo}
                   alt={inst.name}
@@ -41,7 +62,8 @@ export function InstructorRoster() {
                   <span className="text-[10px] font-mono tracking-widest uppercase">
                     {inst.experience}
                   </span>
-                  <span className="text-[10px] font-mono text-[#CE5A37]">
+                  <span className="text-[10px] font-mono text-[#CE5A37] flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#CE5A37] inline-block" />
                     CERTIFIED
                   </span>
                 </div>
@@ -71,20 +93,22 @@ export function InstructorRoster() {
                 </div>
 
                 <div className="pt-2">
-                  <a
+                  <motion.a
                     href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
                       `Halo AURA Movement Studio! Saya ingin berkonsultasi mengenai kelas bersama Coach ${inst.name}.`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#121312] hover:text-[#CE5A37] transition-colors"
+                    whileHover={{ x: 3 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#121312] hover:text-[#CE5A37] transition-colors group"
                   >
                     <span>Jadwal Coach {inst.name.split(" ")[0]}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </motion.a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
