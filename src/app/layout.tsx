@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { ScrollProgressBar } from "@/components/motion/ScrollProgressBar";
+import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 
 export const metadata: Metadata = {
   title: "AURA Movement Studio: Contemporary Reformer Pilates Surabaya",
@@ -42,10 +43,12 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-[#F8F8F7] text-[#121312]">
-        <ScrollProgressBar />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <ScrollProgressBar />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

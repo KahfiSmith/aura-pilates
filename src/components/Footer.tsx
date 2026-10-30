@@ -5,13 +5,15 @@ import { studioData } from "@/data/pilates";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { RevealInView } from "@/components/motion/RevealInView";
+import { useLenis } from "@/components/motion/SmoothScrollProvider";
 
 export function Footer() {
   const { contact, accreditation, schedule } = studioData;
   const shouldReduceMotion = useReducedMotion();
+  const { scrollTo } = useLenis();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollTo(0, { duration: 1.4 });
   };
 
   return (
