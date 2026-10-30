@@ -19,7 +19,6 @@ export function Hero() {
   const trialMessage =
     "Halo AURA Movement Studio! Saya ingin booking sesi latihan / trial class.";
 
-  // GSAP ScrollTrigger subtle parallax on the hero image container
   useEffect(() => {
     if (shouldReduceMotion) return;
 
@@ -87,14 +86,12 @@ export function Hero() {
     <section className="relative overflow-hidden bg-[#F8F8F7] border-b border-[#DFDFD9] pt-8 pb-16 lg:pt-14 lg:pb-24">
       <div className="max-w-7xl mx-auto px-5 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-          {/* Left Column: Kinetic Typography & CTAs */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="lg:col-span-7 flex flex-col justify-between space-y-8"
           >
-            {/* Meta bar */}
             <motion.div
               variants={fadeUpVariants}
               className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] font-mono tracking-widest text-[#5E605E] uppercase border-b border-[#DFDFD9] pb-4"
@@ -108,7 +105,6 @@ export function Hero() {
               <span className="hidden sm:inline">SURABAYA BARAT</span>
             </motion.div>
 
-            {/* Main Headline & Description */}
             <div className="space-y-6">
               <h1 className="font-sans font-black text-6xl sm:text-7xl lg:text-8xl tracking-tighter text-[#121312] uppercase leading-[0.92]">
                 <span className="block overflow-hidden pb-1 -mb-1">
@@ -140,7 +136,6 @@ export function Hero() {
               </motion.p>
             </div>
 
-            {/* CTAs and Studio Meta */}
             <div className="space-y-6 pt-4">
               <motion.div
                 variants={fadeUpVariants}
@@ -192,7 +187,6 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Column: Hero Visual with Cinematic Curtain Reveal & Parallax */}
           <div ref={imageContainerRef} className="lg:col-span-5 relative">
             <motion.div
               initial={
@@ -224,7 +218,6 @@ export function Hero() {
 
               <div className="absolute inset-0 bg-[#121312]/15 pointer-events-none" />
 
-              {/* Specification overlay badge with subtle pulsing status */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -21,7 +21,6 @@ export function PhilosophySection() {
     { num: "04", label: "MOVE BETTER", desc: "Postur tegap alami, mobilitas sendi bebas nyeri & tenaga fungsional" },
   ];
 
-  // GSAP subtle parallax for images
   useEffect(() => {
     if (shouldReduceMotion) return;
 
@@ -62,7 +61,6 @@ export function PhilosophySection() {
       <div className="py-20 lg:py-32 border-b border-[#DFDFD9]">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Column: Manifesto Text */}
             <div className="lg:col-span-5 space-y-6">
               <RevealInView delay={0.05} direction="up" distance={15}>
                 <div className="text-xs font-mono tracking-widest text-[#CE5A37] uppercase flex items-center gap-2">
@@ -103,7 +101,6 @@ export function PhilosophySection() {
               </RevealInView>
             </div>
 
-            {/* Right Column: Interior Image & Progression Steps */}
             <div className="lg:col-span-7">
               <motion.div
                 initial={shouldReduceMotion ? { opacity: 0 } : { clipPath: "inset(100% 0% 0% 0%)", opacity: 0.3 }}
@@ -126,7 +123,6 @@ export function PhilosophySection() {
                 </div>
               </motion.div>
 
-              {/* Steps with staggered entrance & spring hover */}
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {steps.map((st, i) => (
                   <motion.div
@@ -168,7 +164,6 @@ export function PhilosophySection() {
         </div>
       </div>
 
-      {/* Dark Core Philosophy Section with Editorial Contrast */}
       <div className="py-24 sm:py-32 bg-[#121312] text-[#F8F8F7] border-b border-[#2A2C2A] relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">

@@ -41,7 +41,6 @@ export function ClassPrograms() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left Column: Interactive List */}
           <div className="lg:col-span-7 divide-y divide-[#DFDFD9] border-y border-[#DFDFD9]">
             {classes.map((item, idx) => {
               const isSelected = item.id === activeId;
@@ -96,7 +95,6 @@ export function ClassPrograms() {
                     </div>
                   </div>
 
-                  {/* Expandable Details with Smooth AnimatePresence */}
                   <AnimatePresence>
                     {isSelected && (
                       <motion.div
@@ -154,7 +152,6 @@ export function ClassPrograms() {
             })}
           </div>
 
-          {/* Right Column: Sticky Preview Card with Crossfade Transition */}
           <div className="lg:col-span-5 sticky top-28 hidden lg:block">
             <div className="border border-[#121312] bg-[#E5E5E0] overflow-hidden shadow-sm">
               <div className="aspect-[4/5] relative overflow-hidden">

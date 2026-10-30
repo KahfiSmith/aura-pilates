@@ -17,7 +17,6 @@ export function CtaSection() {
 
   return (
     <section className="py-24 sm:py-36 bg-[#121312] text-[#F8F8F7] border-b border-[#2A2C2A] relative overflow-hidden">
-      {/* Subtle ambient luxury glow in the background */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#CE5A37]/10 rounded-full blur-[140px] pointer-events-none"
         aria-hidden="true"

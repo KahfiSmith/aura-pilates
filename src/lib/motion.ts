@@ -2,18 +2,10 @@
 
 import { type Variants } from "motion/react";
 
-/**
- * Premium editorial motion tokens for AURA Movement Studio.
- * Crafted with restrained, luxurious easing inspired by Swiss graphic design & architectural poise.
- */
 export const MOTION_EASE = {
-  // Fast start, long smooth deceleration — great for high-fashion / editorial reveals
   editorial: [0.16, 1, 0.3, 1] as const,
-  // Balanced smooth curve for cards, menus, and layout transitions
   smooth: [0.22, 1, 0.36, 1] as const,
-  // Snappy response for buttons and micro-interactions
   snappy: [0.32, 0.72, 0, 1] as const,
-  // Gentle curve for opacity fades
   subtle: [0.4, 0, 0.2, 1] as const,
 };
 

@@ -41,16 +41,14 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Respect user's prefers-reduced-motion preference
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
     const { gsap, ScrollTrigger } = getGsap();
 
-    // Initialize Lenis with tailored luxury easing for contemporary editorial movement
     const lenis = new Lenis({
       duration: 1.25,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth exponential curve
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
@@ -66,10 +64,8 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     lenisRef.current = lenis;
     globalLenis = lenis;
 
-    // Sync Lenis scroll with GSAP ScrollTrigger updates
     lenis.on("scroll", ScrollTrigger.update);
 
-    // Synchronize GSAP ticker with Lenis RAF
     const handleTicker = (time: number) => {
       lenis.raf(time * 1000);
     };
@@ -77,7 +73,6 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     gsap.ticker.add(handleTicker);
     gsap.ticker.lagSmoothing(0);
 
-    // Global listener to prevent native browser anchor jumping and glide smoothly via Lenis
     const handleAnchorClick = (e: MouseEvent) => {
       const path = e.composedPath ? e.composedPath() : [];
       let anchor: HTMLAnchorElement | null = null;

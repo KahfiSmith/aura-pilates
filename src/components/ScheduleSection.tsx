@@ -40,7 +40,6 @@ export function ScheduleSection() {
           </RevealInView>
         </div>
 
-        {/* Days Filter with Sliding Tab Indicator */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-[#DFDFD9] scrollbar-none">
           {days.map((day) => {
             const isSelected = selectedDay === day;
@@ -65,7 +64,6 @@ export function ScheduleSection() {
           })}
         </div>
 
-        {/* Schedule Slots with Staggered Entrance */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedDay}

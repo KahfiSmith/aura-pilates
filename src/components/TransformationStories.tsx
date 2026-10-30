@@ -54,7 +54,6 @@ export function TransformationStories() {
           </RevealInView>
         </div>
 
-        {/* Gallery Frames with Staggered Entrance */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -99,7 +98,6 @@ export function TransformationStories() {
           ))}
         </motion.div>
 
-        {/* Testimonials with Staggered Cards */}
         <motion.div
           initial="hidden"
           whileInView="visible"

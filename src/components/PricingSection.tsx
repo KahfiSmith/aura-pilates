@@ -35,7 +35,6 @@ export function PricingSection() {
           </RevealInView>
         </div>
 
-        {/* Pricing List with Staggered Entrance */}
         <motion.div
           initial="hidden"
           whileInView="visible"
